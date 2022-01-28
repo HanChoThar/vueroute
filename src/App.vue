@@ -1,30 +1,39 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+  <TheNavigation />
+  <div class="container">
+  <!-- <router-view v-slot="{Component}">
+    <transition name="moveUp"> 
+      <component :key="$route.path" :is="Component"></component>
+    </transition>
+  </router-view> -->
+  <router-view :key="$route.path"/>
   </div>
-  <router-view/>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
 
-#nav {
-  padding: 30px;
+<script>
+import TheNavigation from './components/TheNavigation.vue'
+export default {
+  components: {TheNavigation}
 }
+</script>
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
+<style lang="css">
+  #nav .now-active{
+    color: red;
+    border-bottom: 2px solid red
+  }
 
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
+  .moveUp-enter-active,
+  .moveUp-leave-active{
+    animation: fadeIn 0.3s ease-in
+  }
+
+  @keyframes fadeIn {
+    0%{ opacity : 0;}
+    50%{ opacity: 0.5;}
+    100%{ opacity: 1;}
+  }
+
+  
 </style>

@@ -1,0 +1,27 @@
+<template>
+  <div>
+    <h2>Welcome, {{ username }}</h2>
+    <button @click="logout" >Logout</button>
+    <router-link :to="{name: 'Invoices'}">
+      <button>
+        Invoices
+      </button>
+    </router-link>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      username: window.user
+    }
+  },
+  methods: {
+    logout() {
+      window.user = null
+      this.$router.push({name: 'Home'})
+    }
+  }
+}
+</script>
